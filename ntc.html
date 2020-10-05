@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.0/color-thief.umd.js"></script>
+
+<script language="JavaScript" type="text/javascript" src="jquery-1.2.6.min.js"></script>
+
+<script type="text/javascript" src="ntc.js"></script>
+<style>
+#original { 
+                float:left;   
+                width:25%; 
+                height:280px; 
+		padding:20px;
+		margin: 20px 50px;
+		border: 10px solid black;
+            } 
+#matched { 
+                float:left;   
+                width:25%; 
+                height:280px; 
+		padding:20px;
+		margin: 20px 50px;
+		border: 10px solid black;
+            } 
+
+</style>
+<script type="text/javascript">
+function myFunction() {
+  var x = document.getElementById("myText").value;
+  var y= /^#([A-Fa-f0-9]{3}$)|([A-Fa-f0-9]{6}$)/.test(x)
+  
+if(y) 
+ {
+  //console.log(y);
+  var n_match  = ntc.name(x);
+  //alert("hello");
+  var n_rgb        = n_match[0]; // RGB value of closest match
+  var n_name       = n_match[1]; // Text string: Color name
+
+  document.getElementById("demo").innerHTML = n_name;
+  document.getElementById("aa").innerHTML = n_rgb;
+  var n_exactmatch = n_match[2]; // True if exact color match
+ document.getElementById("original").style.background = document.getElementById('myText').value; 
+ document.getElementById("matched").style.background = n_match[0];
+ }
+else{
+alert("Please enter a valid Hexcode.");
+}
+}
+</script>
+</head>
+<body>
+
+
+Input a hex code : <input type="text" id="myText">
+<button onclick="myFunction()">Try it</button><br></br>
+<h3>Nearest Colour Name :- </h3><p id="demo"></p>
+<h3>Nearest Colour Hex Code:- </h3><p id="aa"></p>
+<div class="original" id="original">
+  <h3>This is the input color.</h3>
+<br></br><br></br>
+</div>
+<div class="matched" id="matched">
+  <h3>The background is the nearest colour.</h3>
+<br></br><br></br>
+</div>
+
+</body>
+</html> 
