@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.0/color-thief.umd.js"></script>
+
+<script language="JavaScript" type="text/javascript" src="jquery-1.2.6.min.js"></script>
+
+<script type="text/javascript" src="ntc.js"></script>
+</head>
+<body>
+<img id="sample_image" class="sample_image" src="sample_image.jpg" width="500" height="600">
+<script>
+
+let color_thief = new ColorThief();
+let sample_image = new Image();
+
+sample_image.onload = () => {
+  result = ntc.name('#' + color_thief.getColor(sample_image).map(x => {
+    const hex = x.toString(16);
+    return hex.length === 1 ? '0' + hex : hex;
+    
+  }).join(''));
+  var aaa=result[0];
+  console.log(aaa);
+  console.log(result[0]); // #f0c420     : Dominant HEX/RGB value of closest match
+  console.log(result[1]); // Moon Yellow : Dominant specific color name of closest match
+  console.log(result[2]); // #ffff00     : Dominant HEX/RGB value of shade of closest match
+  console.log(result[3]); // Yellow      : Dominant color name of shade of closest match
+  console.log(result[4]); // false       : True if exact color match
+};
+alert(window.aaa);
+
+sample_image.crossOrigin = 'anonymous';
+sample_image.src = document.getElementById('sample_image').src;
+alert(window.aaa);
+</script>
+</body>
+</html>
