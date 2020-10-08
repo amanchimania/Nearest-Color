@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.0/color-thief.umd.js"></script>
+
+<script language="JavaScript" type="text/javascript" src="jquery-1.2.6.min.js"></script>
+
+<script type="text/javascript" src="ntc.js"></script>
+<style>
+#original { 
+                float:left;   
+                width:25%; 
+                height:280px; 
+		padding:20px;
+		margin: 20px 50px;
+		border: 10px solid black;
+            } 
+#matched { 
+                float:left;   
+                width:25%; 
+                height:280px; 
+		padding:20px;
+		margin: 20px 50px;
+		border: 10px solid black;
+            } 
+
+</style>
+</head>
+<body>
+<h3>Please select a image to get the nearest color of the image<h3><input type="file" onchange="showFile()" accept="image/*"><br><br>
+<img src="" alt="Thumb preview..." width="200" height="200">
+
+
+<h3>Nearest Colour Name :- </h3><p id="demo"></p>
+<h3>Nearest Colour Hex Code:- </h3><p id="aa"></p>
+<div class="original" id="original">
+  <h3>This is the input color.</h3>
+<br></br><br></br>
+</div>
+<div class="matched" id="matched">
+  <h3>The background is the nearest colour.</h3>
+<br></br><br></br>
+</div>
+
+
+
+<script>
+   // Check for the various File API support.
+   if (window.File && window.FileReader && window.FileList && window.Blob) {
+      function showFile() {
+         var demoImage = document.querySelector('img');
+         var file = document.querySelector('input[type=file]').files[0];
+         var reader = new FileReader();
+         reader.onload = function (event) {
+            demoImage.src = reader.result;
+	
+const colorThief = new ColorThief();
+const img = document.querySelector('img');
+//alert(img);
+
+if (img.complete) {
+  colorThief.getColor(img);
+} else {
+  image.addEventListener('load', function() {
+    colorThief.getColor(img);
+  });
+}
+var color=colorThief.getColor(img);
+for (var i = 0; i < color.length; i++) {
+    var r=color[0];
+    var g=color[1];
+    var b=color[2];
+}
+function rgbToHex(r, g, b) {
+  return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+}
+console.log(rgbToHex(r, g, b));
+var hex=rgbToHex(r, g, b);
+
+var n_match  = ntc.name(hex);
+  //alert("hello");
+  var n_rgb        = n_match[0]; // RGB value of closest match
+  var n_name       = n_match[1]; // Text string: Color name
+
+  document.getElementById("demo").innerHTML = n_name;
+  document.getElementById("aa").innerHTML = n_rgb;
+  var n_exactmatch = n_match[2]; // True if exact color match
+ document.getElementById("original").style.background = hex; 
+ document.getElementById("matched").style.background = n_match[0];
+
+
+
+
+
+         }
+         reader.readAsDataURL(file);
+         console.log(file)
+      }
+   } else {
+      alert("Your browser is too old to support HTML5 File API");
+   }
+</script>
+
+
+
+</body>
+</html>
