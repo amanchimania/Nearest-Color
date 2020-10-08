@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.0/color-thief.umd.js"></script>
+
+<script language="JavaScript" type="text/javascript" src="jquery-1.2.6.min.js"></script>
+
+<script type="text/javascript" src="ntc.js"></script>
+</head>
+<body>
+<img id="sample_image" class="sample_image" src="sample_image.jpg" width="500" height="600">
+<script>
+    const colorThief = new ColorThief();
+    const sample_image = document.querySelector('.sample_image');
+    console.log(sample_image);
+    // Make sure image is finished loading
+    if (sample_image.complete) {
+      colorThief.getColor(sample_image);
+    } else {
+      image.addEventListener('load', function() {
+        colorThief.getColor(sample_image);
+      });
+    }
+    var color=colorThief.getColor(sample_image);
+for (var i = 0; i < color.length; i++) {
+    var r=color[0];
+    var g=color[1];
+    var b=color[2];
+}
+function rgbToHex(r, g, b) {
+  return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+}
+console.log(rgbToHex(r, g, b));
+</script>
+
+</body>
+</html>
